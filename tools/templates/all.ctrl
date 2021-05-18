@@ -16,7 +16,7 @@ partition=compute
 # Partitions are also called queues in some batchsystems
 # Settable via range control files: Yes
 
-timelimit=0-07:00:00
+timelimit=0-05:00:00
 # Format for slurm: dd-hh:mm:ss
 # For all batchsystems: always fill up with two digits per field (used be the job scripts)
 # Settable via range control files: Yes
