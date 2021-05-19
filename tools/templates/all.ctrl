@@ -16,7 +16,7 @@ partition=compute
 # Partitions are also called queues in some batchsystems
 # Settable via range control files: Yes
 
-timelimit=0-05:00:00
+timelimit=7-00:00:00
 # Format for slurm: dd-hh:mm:ss
 # For all batchsystems: always fill up with two digits per field (used be the job scripts)
 # Settable via range control files: Yes
@@ -25,12 +25,12 @@ steps_per_job=1
 # Should not be changed during runtime, and be the same for all joblines
 # Settable via range control files: Yes
 
-cpus_per_step=1
+cpus_per_step=8
 # Sets the slurm cpus-per-task variable (task = step) in SLURM
 # Should not be changed during runtime, and be the same for all joblines
 # Settable via range control files: Yes
 
-queues_per_step=1
+queues_per_step=8
 # Sets the number of queues/processes per step
 # Should not be changed during runtime, and be the same for all joblines
 # Not yet available for SGE (always set to 1)
@@ -54,12 +54,12 @@ central_todo_list_splitting_size=1000
 # For many types of clusters it is recommended if the total number of splitted todo lists stays below 10000.
 # Settable via range control files: Yes
 
-ligands_todo_per_queue=100
+ligands_todo_per_queue=10000
 # Used as a limit of ligands for the to-do lists
 # This value should be divisible by the next setting "ligands_todo_per_refilling_step"
 # Settable via range control files: Yes
 
-ligands_per_refilling_step=10
+ligands_per_refilling_step=1000
 # The to-do files of the queues are filled with <ligands_per_refilling_step> ligands per refill step
 # A number roughly equal to the average of number of ligands per collection is recommended
 # Settable via range control files: Yes
@@ -97,7 +97,7 @@ verbosity_logfiles=standard
 # This option affects the preparation scripts for setting up the basic workflow files (before the workflow is running)
 # Settable via range control files: Yes
 
-store_queue_log_files=all_uncompressed
+store_queue_log_files=all_compressed_error_uncompressed
 # Supported values (experimental)
 #   * all_uncompressed: requires most memory any and storage, but is recommending for test runs and debugging purposes
 #   * all_compressed: requires less memory and storage than uncompressed, but during the last part of the log files might get lost (in particular during crashes) due to the on-the-fly compression
@@ -185,7 +185,8 @@ stop_after_next_check_interval=false
 #   * true : No new ligand will be started after the current ligand is completed
 # Settable via range control files: Yes
 
-ligand_check_interval=100
+ligand_check_interval=10
+# For large scale production runs a value of > 100 is recommended
 # Possible values
 #   * Positive integer
 

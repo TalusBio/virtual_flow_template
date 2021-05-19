@@ -51,7 +51,7 @@ fi
 # Displaying the banner
 echo
 echo
-. helpers/show_banner.sh
+. slave/show_banner.sh
 echo
 echo
 
@@ -94,7 +94,7 @@ echo ""
 for i in $(seq ${start_jobline_no} ${end_jobline_no}); do
     cp ${job_template} ../workflow/job-files/main/${i}.job
     sed -i "s/-1\.1/-${i}\.1/g" ../workflow/job-files/main/${i}.job
-    cd helpers
+    cd slave
     . sync-jobfile.sh ${i}
     cd ..
 done
@@ -104,7 +104,7 @@ echo ""
 
 # Submitting the job files
 if [[ "${submit_mode}" = "submit" ]]; then
-    cd helpers
+    cd slave
     for i in $(seq ${start_jobline_no} ${end_jobline_no}); do
         . submit.sh ../workflow/job-files/main/${i}.job
         if [ ! "${i}" = "${end_jobline_no}" ]; then
